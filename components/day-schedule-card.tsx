@@ -1,17 +1,20 @@
-import type { DaySchedule, ScheduleConfig, Student } from "@/lib/schedule-types"
+import type { DaySchedule, ScheduleConfig, Student, Task } from "@/lib/schedule-types"
 import { calculateBlockPosition, calculatePercentage, formatShortDate } from "@/lib/schedule-utils"
 
 interface DayScheduleCardProps {
   day: DaySchedule
   config: ScheduleConfig
   student: Student
+  tasks?: Task[]
 }
 
-export function DayScheduleCard({ day, config, student }: DayScheduleCardProps) {
+export function DayScheduleCard({ day, config, student, tasks = [] }: DayScheduleCardProps) {
   const totalPercentage = day.blocks.reduce(
     (sum, b) => sum + calculatePercentage(b.start, b.end, student.dayStart, student.dayEnd),
     0,
   )
+
+  const otherTasks = tasks.filter(task => task.date === day.date && task.type === "autre")
 
   return (
     <div className="bg-[#1a1a1a] border border-[#333] rounded-2xl p-3 sm:p-4">
@@ -42,6 +45,9 @@ export function DayScheduleCard({ day, config, student }: DayScheduleCardProps) 
               </div>
             )
           })}
+          <div className="absolute bottom-0 w-full flex justify-center text-[#4A90E2] text-xs">
+            zzz
+          </div>
         </div>
 
         {/* Colonne des blocs */}
@@ -75,6 +81,30 @@ export function DayScheduleCard({ day, config, student }: DayScheduleCardProps) 
                 <span className="text-sm sm:text-lg font-bold" style={{ color: style.textColor }}>
                   {percentage}%
                 </span>
+              </div>
+            )
+          })}
+          {otherTasks.map((task) => {
+            const { topPercent, heightPercent } = calculateBlockPosition(
+              task.timeStart,
+              task.timeEnd,
+              student.dayStart,
+              student.dayEnd,
+            )
+
+            return (
+              <div
+                key={task.id}
+                className="absolute left-0 right-0 flex items-center justify-center px-2 rounded-lg"
+                style={{
+                  top: `${topPercent}%`,
+                  height: `${heightPercent}%`,
+                  backgroundColor: task.color,
+                }}
+              >
+                <p className="text-xs sm:text-sm font-medium text-white text-center line-clamp-1 overflow-hidden text-ellipsis">
+                  {task.title}
+                </p>
               </div>
             )
           })}

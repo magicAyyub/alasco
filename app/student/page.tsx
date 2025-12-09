@@ -4,7 +4,8 @@ import { useState } from "react"
 import { DayTasksCard } from "@/components/day-tasks-card"
 import { AddTaskForm } from "@/components/add-task-form"
 import { TaskDetail } from "@/components/task-detail"
-import { ChevronLeft, ChevronRight } from "lucide-react"
+import { CalendarPicker } from "@/components/calendar-picker"
+import { ChevronLeft, ChevronRight, Calendar } from "lucide-react"
 import { formatDateRange } from "@/lib/schedule-utils"
 
 import studentData from "@/data/student.json"
@@ -22,6 +23,7 @@ export default function StudentView() {
   const [showAddForm, setShowAddForm] = useState(false)
   const [selectedDate, setSelectedDate] = useState("")
   const [selectedTask, setSelectedTask] = useState<Task | null>(null)
+  const [showCalendar, setShowCalendar] = useState(false)
 
   const handleAddTask = (newTask: any) => {
     const task = {
@@ -51,11 +53,23 @@ export default function StudentView() {
             </p>
           </div>
           <div className="flex items-center gap-2">
-            <button className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-[#1a1a1a] border border-[#333] rounded-xl text-white hover:bg-[#252525] transition-colors">
+            <button 
+              onClick={() => console.log("Previous week clicked")}
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-[#1a1a1a] border border-[#333] rounded-xl text-white hover:bg-[#252525] transition-colors"
+            >
               <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
-            <button className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-[#1a1a1a] border border-[#333] rounded-xl text-white hover:bg-[#252525] transition-colors">
+            <button 
+              onClick={() => console.log("Next week clicked")}
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-[#1a1a1a] border border-[#333] rounded-xl text-white hover:bg-[#252525] transition-colors"
+            >
               <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
+            </button>
+            <button 
+              onClick={() => setShowCalendar(true)}
+              className="w-9 h-9 sm:w-10 sm:h-10 flex items-center justify-center bg-[#1a1a1a] border border-[#333] rounded-xl text-white hover:bg-[#252525] transition-colors"
+            >
+              <Calendar className="w-4 h-4 sm:w-5 sm:h-5" />
             </button>
           </div>
         </div>
@@ -87,6 +101,10 @@ export default function StudentView() {
           task={selectedTask}
           onClose={() => setSelectedTask(null)}
         />
+      )}
+
+      {showCalendar && (
+        <CalendarPicker onClose={() => setShowCalendar(false)} />
       )}
     </div>
   )
