@@ -1,0 +1,42 @@
+{
+  "weekStart": "2025-12-09",
+  "weekEnd": "2025-12-15",
+  "tasks": [
+    {
+      "id": "task_001",
+      "date": "2025-12-09",
+      "type": "devoir",
+      "title": "Exercices de maths page 45-47",
+      "timeStart": "18:00",
+      "timeEnd": "20:00",
+      "color": "#3B82F6"
+    },
+    {
+      "id": "task_002",
+      "date": "2025-12-10",
+      "type": "evaluation",
+      "title": "Contrôle Physique-Chimie",
+      "timeStart": "10:00",
+      "timeEnd": "11:00",
+      "color": "#E84C3D"
+    },
+    {
+      "id": "task_003",
+      "date": "2025-12-11",
+      "type": "devoir",
+      "title": "Rédaction Histoire",
+      "timeStart": "17:00",
+      "timeEnd": "19:00",
+      "color": "#8B5CF6"
+    },
+    {
+      "id": "task_004",
+      "date": "2025-12-13",
+      "type": "evaluation",
+      "title": "Devoir de niveau Anglais",
+      "timeStart": "14:00",
+      "timeEnd": "15:30",
+      "color": "#E84C3D"
+    }
+  ]
+}

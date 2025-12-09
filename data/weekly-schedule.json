@@ -1,0 +1,67 @@
+{
+  "weekStart": "2025-12-09",
+  "weekEnd": "2025-12-15",
+  "days": [
+    {
+      "dayOfWeek": 1,
+      "name": "Lundi",
+      "date": "2025-12-09",
+      "blocks": [
+        { "start": "07:30", "end": "12:00", "type": "ecole" },
+        { "start": "13:30", "end": "17:30", "type": "ecole" },
+        { "start": "18:00", "end": "20:00", "type": "repetiteur" }
+      ]
+    },
+    {
+      "dayOfWeek": 2,
+      "name": "Mardi",
+      "date": "2025-12-10",
+      "blocks": [
+        { "start": "07:30", "end": "12:00", "type": "ecole" },
+        { "start": "13:30", "end": "17:30", "type": "ecole" },
+        { "start": "18:00", "end": "20:00", "type": "repetiteur" }
+      ]
+    },
+    {
+      "dayOfWeek": 3,
+      "name": "Mercredi",
+      "date": "2025-12-11",
+      "blocks": [
+        { "start": "07:30", "end": "12:00", "type": "ecole" },
+        { "start": "14:30", "end": "16:30", "type": "renfo" },
+        { "start": "17:00", "end": "19:00", "type": "repetiteur" }
+      ]
+    },
+    {
+      "dayOfWeek": 4,
+      "name": "Jeudi",
+      "date": "2025-12-12",
+      "blocks": [
+        { "start": "07:30", "end": "12:00", "type": "ecole" },
+        { "start": "13:30", "end": "17:30", "type": "ecole" },
+        { "start": "18:00", "end": "20:00", "type": "repetiteur" }
+      ]
+    },
+    {
+      "dayOfWeek": 5,
+      "name": "Vendredi",
+      "date": "2025-12-13",
+      "blocks": [
+        { "start": "07:30", "end": "12:00", "type": "ecole" },
+        { "start": "13:30", "end": "16:30", "type": "ecole" }
+      ]
+    },
+    {
+      "dayOfWeek": 6,
+      "name": "Samedi",
+      "date": "2025-12-14",
+      "blocks": [{ "start": "09:00", "end": "12:00", "type": "repetiteur" }]
+    },
+    {
+      "dayOfWeek": 0,
+      "name": "Dimanche",
+      "date": "2025-12-15",
+      "blocks": [{ "start": "09:00", "end": "12:00", "type": "repetiteur" }]
+    }
+  ]
+}

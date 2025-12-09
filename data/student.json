@@ -1,0 +1,9 @@
+{
+  "id": "student_001",
+  "firstName": "Amadou",
+  "lastName": "Diallo",
+  "class": "Première S",
+  "school": "Lycée Classique",
+  "dayStart": "07:30",
+  "dayEnd": "21:00"
+}
