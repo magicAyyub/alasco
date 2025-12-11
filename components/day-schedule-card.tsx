@@ -1,14 +1,15 @@
-import type { DaySchedule, ScheduleConfig, Student, Task } from "@/lib/schedule-types"
+import type { DaySchedule, Student, Task, RecurringActivity } from "@/lib/schedule-types"
 import { calculateBlockPosition, calculatePercentage, formatShortDate } from "@/lib/schedule-utils"
 
 interface DayScheduleCardProps {
   day: DaySchedule
-  config: ScheduleConfig
   student: Student
   tasks?: Task[]
+  recurringActivities?: RecurringActivity[]
+  onEmptyClick?: () => void
 }
 
-export function DayScheduleCard({ day, config, student, tasks = [] }: DayScheduleCardProps) {
+export function DayScheduleCard({ day, student, tasks = [], recurringActivities = [], onEmptyClick }: DayScheduleCardProps) {
   const totalPercentage = day.blocks.reduce(
     (sum, b) => sum + calculatePercentage(b.start, b.end, student.dayStart, student.dayEnd),
     0,
@@ -52,7 +53,8 @@ export function DayScheduleCard({ day, config, student, tasks = [] }: DaySchedul
 
         {/* Colonne des blocs */}
         <div
-          className="relative flex-1 rounded-lg overflow-hidden"
+          className="relative flex-1 rounded-lg overflow-hidden cursor-pointer"
+          onClick={onEmptyClick}
           style={{
             backgroundImage: "repeating-linear-gradient(135deg, transparent, transparent 3px, #333 3px, #333 4px)",
             backgroundColor: "#1a1a1a",
@@ -66,7 +68,33 @@ export function DayScheduleCard({ day, config, student, tasks = [] }: DaySchedul
               student.dayEnd,
             )
             const percentage = calculatePercentage(block.start, block.end, student.dayStart, student.dayEnd)
-            const style = config.activityTypes[block.type]
+
+            // Styles par défaut
+            const blockStyles: Record<string, { bg: string; label: string; textColor: string }> = {
+              ecole: { bg: "#F5C842", label: "École", textColor: "#000" },
+              renfo: { bg: "#E84C3D", label: "Renforcement", textColor: "#fff" },
+              repetiteur: { bg: "#ffffff", label: "Répétiteur", textColor: "#000" },
+              autre: { bg: "#666", label: "Autre", textColor: "#fff" }
+            }
+
+            let style = blockStyles[block.type]
+
+            // Pour les blocs "autre", trouver l'activité correspondante pour obtenir la vraie couleur et le titre
+            if (block.type === "autre") {
+              const activity = recurringActivities.find(
+                a => a.dayOfWeek === day.dayOfWeek && 
+                     a.timeStart === block.start && 
+                     a.timeEnd === block.end
+              )
+              
+              if (activity) {
+                style = {
+                  bg: activity.color,
+                  label: activity.title,
+                  textColor: "#fff"
+                }
+              }
+            }
 
             return (
               <div
@@ -75,7 +103,7 @@ export function DayScheduleCard({ day, config, student, tasks = [] }: DaySchedul
                 style={{
                   top: `${topPercent}%`,
                   height: `${heightPercent}%`,
-                  backgroundColor: style.color,
+                  backgroundColor: style.bg,
                 }}
               >
                 <span className="text-sm sm:text-lg font-bold" style={{ color: style.textColor }}>

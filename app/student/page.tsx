@@ -1,22 +1,24 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useMemo } from "react"
 import { DayTasksCard } from "@/components/day-tasks-card"
 import { AddTaskForm } from "@/components/add-task-form"
 import { TaskDetail } from "@/components/task-detail"
 import { CalendarPicker } from "@/components/calendar-picker"
 import { ChevronLeft, ChevronRight, Calendar } from "lucide-react"
-import { formatDateRange } from "@/lib/schedule-utils"
+import { formatDateRange, generateDayScheduleFromRecurring } from "@/lib/schedule-utils"
 
 import studentData from "@/data/student.json"
-import weeklySchedule from "@/data/weekly-schedule.json"
+import schoolSchedule from "@/data/school-schedule.json"
+import recurringSchedule from "@/data/recurring-schedule.json"
 import weeklyTasks from "@/data/weekly-tasks.json"
 
-import type { Student, WeeklySchedule, WeeklyTasks, Task } from "@/lib/schedule-types"
+import type { Student, WeeklyTasks, Task } from "@/lib/schedule-types"
 
 const student = studentData as Student
-const schedule = weeklySchedule as WeeklySchedule
 const initialTasks = weeklyTasks as WeeklyTasks
+
+const dayNames = ["Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi", "Samedi", "Dimanche"]
 
 export default function StudentView() {
   const [tasks, setTasks] = useState(initialTasks.tasks)
@@ -24,6 +26,31 @@ export default function StudentView() {
   const [selectedDate, setSelectedDate] = useState("")
   const [selectedTask, setSelectedTask] = useState<Task | null>(null)
   const [showCalendar, setShowCalendar] = useState(false)
+
+  // Combiner emploi du temps scolaire + activités permanentes
+  const allActivities = useMemo(() => {
+    return [...schoolSchedule.activities, ...recurringSchedule.activities]
+  }, [])
+
+  const schedule = useMemo(() => {
+    const startOfWeek = new Date()
+    startOfWeek.setDate(startOfWeek.getDate() - startOfWeek.getDay() + 1)
+    
+    return {
+      weekStart: startOfWeek.toISOString().split('T')[0],
+      weekEnd: new Date(startOfWeek.getTime() + 6 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+      days: dayNames.map((name, index) => {
+        const date = new Date(startOfWeek)
+        date.setDate(date.getDate() + index)
+        return generateDayScheduleFromRecurring(
+          index + 1,
+          name,
+          date.toISOString().split('T')[0],
+          allActivities
+        )
+      })
+    }
+  }, [allActivities])
 
   const handleAddTask = (newTask: any) => {
     const task = {

@@ -1,4 +1,4 @@
-export type ActivityType = "ecole" | "renfo" | "repetiteur"
+export type ActivityType = "ecole" | "renfo" | "repetiteur" | "autre"
 
 export interface TimeBlock {
   start: string
@@ -59,4 +59,42 @@ export interface WeeklyTasks {
   weekStart: string
   weekEnd: string
   tasks: Task[]
+}
+
+export interface RecurringActivity {
+  id: string
+  dayOfWeek: number
+  title: string
+  timeStart: string
+  timeEnd: string
+  color: string
+  revisionColor?: string
+}
+
+export interface RecurringSchedule {
+  activities: RecurringActivity[]
+}
+
+export interface SubjectPhoto {
+  id: string
+  url: string
+  timestamp: string
+}
+
+export interface SubjectRevision {
+  id: string
+  date: string
+  subjectTitle: string
+  activityId: string
+  audioUrl?: string
+  audioDuration?: number
+  photos: SubjectPhoto[]
+  completed: boolean
+  createdAt: string
+  updatedAt: string
+}
+
+export interface DailyRevisions {
+  date: string
+  revisions: SubjectRevision[]
 }

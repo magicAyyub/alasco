@@ -1,0 +1,130 @@
+{
+  "activities": [
+    {
+      "id": "sch_001",
+      "dayOfWeek": 1,
+      "title": "Mathématiques",
+      "timeStart": "08:00",
+      "timeEnd": "09:00",
+      "color": "#F5C842",
+      "revisionColor": "#F5C842"
+    },
+    {
+      "id": "sch_002",
+      "dayOfWeek": 1,
+      "title": "Physique-Chimie",
+      "timeStart": "09:00",
+      "timeEnd": "10:00",
+      "color": "#F5C842",
+      "revisionColor": "#3498DB"
+    },
+    {
+      "id": "sch_003",
+      "dayOfWeek": 1,
+      "title": "Français",
+      "timeStart": "10:15",
+      "timeEnd": "11:15",
+      "color": "#F5C842",
+      "revisionColor": "#E67E22"
+    },
+    {
+      "id": "sch_004",
+      "dayOfWeek": 1,
+      "title": "Anglais",
+      "timeStart": "11:15",
+      "timeEnd": "12:00",
+      "color": "#F5C842",
+      "revisionColor": "#9B59B6"
+    },
+    {
+      "id": "sch_005",
+      "dayOfWeek": 1,
+      "title": "Histoire-Géo",
+      "timeStart": "14:00",
+      "timeEnd": "15:00",
+      "color": "#F5C842",
+      "revisionColor": "#2ECC71"
+    },
+    {
+      "id": "sch_006",
+      "dayOfWeek": 1,
+      "title": "SVT",
+      "timeStart": "15:00",
+      "timeEnd": "16:00",
+      "color": "#F5C842",
+      "revisionColor": "#1ABC9C"
+    },
+    {
+      "id": "sch_007",
+      "dayOfWeek": 1,
+      "title": "EPS",
+      "timeStart": "16:15",
+      "timeEnd": "17:30",
+      "color": "#F5C842",
+      "revisionColor": "#E84C3D"
+    },
+    {
+      "id": "sch_011",
+      "dayOfWeek": 3,
+      "title": "Mathématiques",
+      "timeStart": "08:00",
+      "timeEnd": "09:00",
+      "color": "#F5C842",
+      "revisionColor": "#F5C842"
+    },
+    {
+      "id": "sch_012",
+      "dayOfWeek": 3,
+      "title": "Physique-Chimie",
+      "timeStart": "09:00",
+      "timeEnd": "10:00",
+      "color": "#F5C842",
+      "revisionColor": "#3498DB"
+    },
+    {
+      "id": "sch_013",
+      "dayOfWeek": 3,
+      "title": "Français",
+      "timeStart": "10:15",
+      "timeEnd": "11:15",
+      "color": "#F5C842",
+      "revisionColor": "#E67E22"
+    },
+    {
+      "id": "sch_014",
+      "dayOfWeek": 4,
+      "title": "Mathématiques",
+      "timeStart": "08:00",
+      "timeEnd": "09:00",
+      "color": "#F5C842",
+      "revisionColor": "#F5C842"
+    },
+    {
+      "id": "sch_015",
+      "dayOfWeek": 4,
+      "title": "Physique-Chimie",
+      "timeStart": "09:00",
+      "timeEnd": "10:00",
+      "color": "#F5C842",
+      "revisionColor": "#3498DB"
+    },
+    {
+      "id": "sch_016",
+      "dayOfWeek": 4,
+      "title": "SVT",
+      "timeStart": "10:15",
+      "timeEnd": "11:15",
+      "color": "#F5C842",
+      "revisionColor": "#1ABC9C"
+    },
+    {
+      "id": "sch_017",
+      "dayOfWeek": 4,
+      "title": "Histoire-Géo",
+      "timeStart": "14:00",
+      "timeEnd": "15:00",
+      "color": "#F5C842",
+      "revisionColor": "#2ECC71"
+    }
+  ]
+}
